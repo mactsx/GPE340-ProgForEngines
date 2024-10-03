@@ -15,7 +15,7 @@ public class HumanoidPawn : Pawn
     public override void Move(Vector3 direction)
     {
         // Convert the direction from world space to local space
-        direction = transform.InverseTransformDirection(direction);
+        //direction = transform.InverseTransformDirection(direction);
 
         direction *= maxMoveSpeed;
 
@@ -39,4 +39,20 @@ public class HumanoidPawn : Pawn
         // Start rotating towards the target
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, maxRotationSpeed * Time.deltaTime);
     }
+
+    public void OnAnimatorMove()
+    {
+        // After the animation, use root motion to move the game object
+        transform.position = animator.rootPosition;
+        transform.rotation = animator.rootRotation;
+
+        // If the controller has a NavMeshAgent
+        AIController aiController = controller as AIController;
+        if (aiController != null)
+        {
+            // Set the nav agent to understand movement from the animator
+            aiController.agent.nextPosition = animator.rootPosition;
+        }
+    }
+
 }
