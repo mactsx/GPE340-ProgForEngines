@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : Controller
 {
     public bool isUsingMouseRotation;
+    private float speed;
 
     // Update is called once per frame
     protected override void Update()
@@ -19,7 +20,17 @@ public class PlayerController : Controller
 
         moveVector = Vector3.ClampMagnitude(moveVector, 1);
 
-        pawn.Move(moveVector);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = pawn.maxSprintSpeed;
+        }
+        else
+        {
+            speed = pawn.maxMoveSpeed;
+        }
+
+
+        pawn.Move(moveVector, speed);
 
         // Rotate the pawn based on the cameraRotation axis
         pawn.Rotate(Input.GetAxis("CameraRotation"));

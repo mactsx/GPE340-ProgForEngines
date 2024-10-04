@@ -6,9 +6,10 @@ public abstract class Pawn : MonoBehaviour
 {
     public Controller controller;
     public float maxMoveSpeed;
+    public float maxSprintSpeed;
     public float maxRotationSpeed;
 
-    public abstract void Move(Vector3 direction);
+    public abstract void Move(Vector3 direction, float speed);
 
     public abstract void Rotate(float speed);
 

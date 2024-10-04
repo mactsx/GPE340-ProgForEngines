@@ -73,7 +73,7 @@ public class AIController : Controller
         desiredVelocity = agent.desiredVelocity;
 
         // Send that direction to the move function - add speed in the move function
-        pawn.Move(desiredVelocity.normalized);
+        pawn.Move(desiredVelocity.normalized, pawn.maxMoveSpeed);
 
         // Look towards the player
         pawn.RotateToLookAt(targetTransform.position);

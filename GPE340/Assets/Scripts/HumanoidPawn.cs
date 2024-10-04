@@ -12,13 +12,13 @@ public class HumanoidPawn : Pawn
         animator = GetComponent<Animator>();
     }
 
-    public override void Move(Vector3 direction)
+    public override void Move(Vector3 direction, float speed)
     {
         // Convert the direction from world space to local space
         //direction = transform.InverseTransformDirection(direction);
 
-        direction *= maxMoveSpeed;
-
+        direction *= speed;
+        
         animator.SetFloat("Forward", direction.z);
         animator.SetFloat("Right", direction.x);
     }
