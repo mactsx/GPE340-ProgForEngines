@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2067066146973593512
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.586
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261854819642843189, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: m_Name
+      value: RayGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: damageDone
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9021652146976669686}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CreateParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9021652146976669686}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 9021652146976669686}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9021652146976669686}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9021652146976669686}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 9021652146976669686}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponAction_Raygun, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CreateParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AutofireEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AutofireBegin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CreateParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: WeaponAction_Raygun, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: WeaponAction_Raygun, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -103121148673508920, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+--- !u!4 &5644283384363834388 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5979430517743678396, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+  m_PrefabInstance: {fileID: 2067066146973593512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8676461547513286557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7261854819642843189, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+  m_PrefabInstance: {fileID: 2067066146973593512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9021652146976669686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676461547513286557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b285413565ff8548943ea86a4e249a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireDistance: 20
+  firepoint: {fileID: 5644283384363834388}
+  beamPrefab: {fileID: 8622075348752275703, guid: 453594f86901c28459a8bd3262997814, type: 3}
+  muzzleParticlePrefab: {fileID: 1462884231896155567, guid: 3002a91cefc4db64c8df4509be8a8eb4, type: 3}
