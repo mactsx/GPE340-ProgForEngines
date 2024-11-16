@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerControllerPrefab;
     public GameObject AIControllerPrefab;
     public GameObject PlayerPawnPrefab;
+    public GameObject EnemyPawnPrefab;
     public GameObject cameraPrefab;
 
     [Header("Other")]
@@ -17,9 +18,15 @@ public class GameManager : MonoBehaviour
     public CameraController mainCamera;
     public PlayerController player;
 
+    [Header("Spawning")]
     // Places pawns can spawn from
     public SpawnPoint[] spawnPoints;
+    public List<AIController> aiEnemies;
 
+    [Header("Waves")]
+    public List<Wave> waves;
+    public int currentWave;
+    public int enemiesLeft;
     public bool isPaused;
 
     public void Awake()
@@ -37,6 +44,9 @@ public class GameManager : MonoBehaviour
         FindCamera();
         FindSpawnPoints();
         SpawnPlayer();
+        currentWave = 0;
+        SpawnWave(currentWave);
+
     }
 
     // Update is called once per frame
@@ -89,16 +99,57 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayerPawn()
     {
-        // Get random spawn and spawn a pawn
-        Transform randomSpawn = GetRandomSpawn();
-        GameObject PawnObj = Instantiate(PlayerPawnPrefab, randomSpawn.transform.position, randomSpawn.transform.rotation);
-        Pawn tempPawn = PawnObj.GetComponent<Pawn>();
+        Pawn tempPawn = SpawnPawn();
 
         player.PossessPawn(tempPawn);
 
         // Assign the camera
         AssignCamera(tempPawn);
+    }
 
+    // Spawn default player pawn
+    public Pawn SpawnPawn()
+    {
+        return SpawnPawn(PlayerPawnPrefab);
+    }
+
+    // Spawn a specific gameobject pawn
+    public Pawn SpawnPawn(GameObject pawnToSpawn)
+    {
+        // Get random spawn and spawn a pawn
+        Transform randomSpawn = GetRandomSpawn();
+        GameObject PawnObj = Instantiate(pawnToSpawn, randomSpawn.transform.position, randomSpawn.transform.rotation);
+        Pawn tempPawn = PawnObj.GetComponent<Pawn>();
+
+        return tempPawn;
+    }
+
+    // Spawn default enemy
+    public void SpawnEnemy ()
+    {
+        SpawnEnemy(EnemyPawnPrefab);
+    }
+
+    // Spawn specific enemy
+    public void SpawnEnemy(GameObject pawnToSpawn)
+    {
+        // Create controller at 0
+        GameObject AIConObj = Instantiate(AIControllerPrefab, Vector3.zero, Quaternion.identity);
+        AIController AICon = AIConObj.GetComponent<AIController>();
+
+        // Add it to list of enemies
+        aiEnemies.Add(AICon);
+
+        // Connect and spawn pawn
+        AICon.PossessPawn(SpawnPawn(pawnToSpawn));
+
+        // Add function when enemy dies
+        Health AIHealth = AICon.pawn.GetComponent<Health>();
+        if (AIHealth != null)
+        {
+            AIHealth.OnDie.AddListener(OnEnemyDeath);
+            Debug.Log("Added event");
+        }
     }
 
     public void AssignCamera(Pawn tempPawn)
@@ -126,21 +177,29 @@ public class GameManager : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.OnDie.AddListener(DisconnectCameraFromPlayer);
+            playerHealth.OnDie.AddListener(OnPlayerDeath);
         }
     }
 
     public void WhenGameOver()
     {
+        Debug.Log("GAME OVER!");
+    }
 
+    public void WhenWin()
+    {
+        Debug.Log("*********** All Enemies Killed - VICTORY ***********");
     }
 
     // For adding respawn button later - do not assign anywhere
     public void RespawnPlayer()
     {
+
         // Check if there are enough lives
         if (player.lives > 0)
         {
-            // destroy current pawn?
+            // destroy current pawn
+            Destroy(player.pawn.gameObject);
 
             // Unpossess pawn
             player.UnpossessPawn();
@@ -163,6 +222,33 @@ public class GameManager : MonoBehaviour
         RespawnPlayer();
     }
 
+    public void OnEnemyDeath()
+    {
+        // Subtract that enemy from the total
+        enemiesLeft--;
+        
+
+        Debug.Log(enemiesLeft + " enemies left");
+
+        // If that was the last enemy, spawn a new wave
+        if (enemiesLeft <= 0)
+        {
+            currentWave++;
+
+            // If there is data for this wave number
+            if (currentWave < waves.Count)
+            {
+                // Spawn the wave
+                SpawnWave(currentWave);
+            }
+            // Otherwise there are no more waves and the player wins
+            else
+            {
+                WhenWin();
+            }
+        }
+    }
+
     public void Pause()
     {
         isPaused = true;
@@ -180,4 +266,48 @@ public class GameManager : MonoBehaviour
         else
             Pause();
     }
+
+    public void SpawnWave(int waveNum)
+    {
+        SpawnWave(waves[waveNum]);
+    }
+
+    public void SpawnWave (Wave wave)
+    {
+        // Make sure the list of enemies is clear
+        ClearWave(); 
+
+        // Spawn each enemy in the wave
+        foreach (Pawn enemy in wave.enemies)
+        {
+            GameObject pawnObj = enemy.gameObject;
+            SpawnEnemy(pawnObj);
+        }
+        // How many enemies are left
+        enemiesLeft = wave.enemies.Count;
+    }
+
+    public void ClearWave()
+    {
+        // For each enemy in the list
+        foreach (AIController enemy in aiEnemies)
+        {
+            // If the enemy exists
+            if (enemy != null)
+            {
+                // If it has a pawn
+                if(enemy.pawn != null)
+                {
+                    // Destroy the pawn
+                    Destroy(enemy.pawn.gameObject);
+                }
+                // Destroy the controller
+                Destroy(enemy.gameObject);
+            }
+        }
+        // Clear the list
+        aiEnemies.Clear();
+    }
+
+
 }

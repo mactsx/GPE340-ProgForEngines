@@ -358,6 +358,7 @@
 "Assets/Scripts/Controller/Controller.cs"
 "Assets/Scripts/Controller/PlayerController.cs"
 "Assets/Scripts/CreateParticle.cs"
+"Assets/Scripts/Game Manager/Wave.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Health/Health.cs"
 "Assets/Scripts/Pawn/HumanoidPawn.cs"

@@ -25,7 +25,7 @@ public class AIController : Controller
             Debug.Log("Game Paused");
             agent.enabled = false;
         }
-        else
+        else if (agent != null)
             agent.enabled = true;
 
         // Check if there is a target
@@ -82,7 +82,7 @@ public class AIController : Controller
         {
             return;
         }
-        
+
         // Set NavMesh to seek target
         agent.SetDestination(targetTransform.position);
 
