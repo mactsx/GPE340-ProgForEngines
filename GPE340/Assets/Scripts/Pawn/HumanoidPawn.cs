@@ -8,9 +8,10 @@ public class HumanoidPawn : Pawn
     public Transform weaponAttachPoint;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         animator = GetComponent<Animator>();
+        base.Start();
     }
 
     public override void Move(Vector3 direction, float speed)
@@ -49,15 +50,18 @@ public class HumanoidPawn : Pawn
         Debug.Log(weaponToEquip + " has been equipped");
         weapon = Instantiate(weaponToEquip, weaponAttachPoint) as Weapon;
         weapon.transform.localPosition = Vector3.zero;
+        weapon.owner = this;
     }
 
     public override void UnequipWeapon ()
     {
+        weapon.owner = null;
+
         if (weapon != null)
         {
             Destroy(weapon.gameObject);
         }
-
+        
         // Make sure weapon is null
         weapon = null;
     }

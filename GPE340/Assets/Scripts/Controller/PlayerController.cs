@@ -6,10 +6,25 @@ public class PlayerController : Controller
 {
     public bool isUsingMouseRotation;
     private float speed;
+    public int lives = 3;
+
+    public bool pauseGame;
 
     // Update is called once per frame
     protected override void Update()
     {
+        if (pauseGame == true)
+        {
+            GameManager.instance.isPaused = true;
+        }
+        else
+            GameManager.instance.isPaused = false;
+
+        // Exit early if paused
+        if (GameManager.instance.isPaused)
+            return;
+
+        
         // Call parent update
         base.Update();
     }

@@ -405,6 +405,7 @@ MonoBehaviour:
   damageDone: 30
   RightHandIKTarget: {fileID: 3550508295473532962}
   LeftHandIKTarget: {fileID: 9071392284414318239}
+  maxAccuracyOffset: 0.5
 --- !u!114 &637165356566241664
 MonoBehaviour:
   m_ObjectHideFlags: 0

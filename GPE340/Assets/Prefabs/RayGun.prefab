@@ -60,6 +60,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: maxAccuracyOffset
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

@@ -17,6 +17,21 @@ public abstract class Pawn : MonoBehaviour
     public float maxRotationSpeed;
 
     public Weapon weapon;
+    public Weapon[] startingWeaponOptions;
+
+    public virtual void Start()
+    {
+        // If there are weapons to be chosen from
+        if (startingWeaponOptions.Length > 0)
+        {
+            // Equip random weapon
+            EquipWeapon(startingWeaponOptions[UnityEngine.Random.Range(0, startingWeaponOptions.Length)]);
+        }
+        else
+        {
+            Debug.Log("No starting weapons to chose from");
+        }
+    }
 
 
     /// <summary>

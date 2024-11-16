@@ -232,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7712387528893983571}
   - component: {fileID: 3764979798626302460}
+  - component: {fileID: 965948127}
   m_Layer: 0
   m_Name: Beta_Surface
   m_TagString: Untagged
@@ -372,6 +373,25 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000002682209, y: -0.16444433, z: -0.007529475}
     m_Extent: {x: 0.9025662, y: 0.9460366, z: 0.17718455}
   m_DirtyAABB: 0
+--- !u!114 &965948127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867085959124152992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef7df29c48654a4ebd30b66225caefd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  maxMoveSpeed: 0
+  maxSprintSpeed: 0
+  maxRotationSpeed: 0
+  weapon: {fileID: 0}
+  startingWeaponOptions: []
+  weaponAttachPoint: {fileID: 0}
 --- !u!1 &963140551336010637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,10 +2247,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  maxMoveSpeed: 6
-  maxSprintSpeed: 20
-  maxRotationSpeed: 50
+  maxMoveSpeed: 5
+  maxSprintSpeed: 8
+  maxRotationSpeed: 90.8
   weapon: {fileID: 848289242161729286}
+  startingWeaponOptions:
+  - {fileID: 8335390351429642191, guid: f23c308bef78ecd43937430a68916316, type: 3}
+  - {fileID: 7642391697745330210, guid: 85692284729a46247bcd71449713e193, type: 3}
   weaponAttachPoint: {fileID: 5308289002524988971}
 --- !u!114 &-5600980324483980819
 MonoBehaviour:
@@ -2661,8 +2684,45 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: maxAccuracyOffset
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnPrimaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 651819691}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 651819691}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: OnSecondaryAttackBegin.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 651819691}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+--- !u!1 &1579607892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7261854819642843189, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+  m_PrefabInstance: {fileID: 7261854818873100129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &651819691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579607892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b285413565ff8548943ea86a4e249a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireDistance: 10
+  firepoint: {fileID: 3908137234173146333}
+  beamPrefab: {fileID: 8622075348752275703, guid: 453594f86901c28459a8bd3262997814, type: 3}
+  muzzleParticlePrefab: {fileID: 1462884231896155567, guid: 3002a91cefc4db64c8df4509be8a8eb4, type: 3}
 --- !u!4 &1579607893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7261854819642843188, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
@@ -2673,9 +2733,14 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
   m_PrefabInstance: {fileID: 7261854818873100129}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1579607892}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f30b7ac2b06986d4e9d029c56f47afa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3908137234173146333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5979430517743678396, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+  m_PrefabInstance: {fileID: 7261854818873100129}
+  m_PrefabAsset: {fileID: 0}

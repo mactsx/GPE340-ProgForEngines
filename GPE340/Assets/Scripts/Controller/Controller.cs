@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Controller : MonoBehaviour
 {
     public Pawn pawn;
+    public float accuracy;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -24,7 +25,7 @@ public abstract class Controller : MonoBehaviour
 
     protected abstract void MakeDecsions();
 
-    protected virtual void PossessPawn(Pawn pawnToPossess)
+    public virtual void PossessPawn(Pawn pawnToPossess)
     {
         pawn = pawnToPossess;
 
@@ -32,7 +33,7 @@ public abstract class Controller : MonoBehaviour
         pawn.controller = this; 
     }
 
-    protected virtual void UnpossessPawn()
+    public virtual void UnpossessPawn()
     {
         // Set the pawn and its controller to null
         pawn.controller = null;

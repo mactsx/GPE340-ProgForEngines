@@ -12,6 +12,10 @@ public class PickupWeapon : Pickup
 
     public void Update()
     {
+        // Exit early if paused
+        if (GameManager.instance.isPaused)
+            return;
+
         if (pickupSpin)
         {
             gameObject.transform.Rotate(0, 0 + (spinSpeed / 10), 0);

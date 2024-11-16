@@ -45,6 +45,16 @@ public class WeaponAction_Raygun : WeaponAction
         // See if the fire rate allows for another shot
         if (Time.time >= lastShotTime + secondsPerShot)
         {
+            // Store the original direction
+            Vector3 newFireDirection = firepoint.forward;
+
+            // Get the rotation change
+            Quaternion accuracyFireDelta = Quaternion.Euler(0, weapon.GetAccuracyRotationDegrees(weapon.owner.controller.accuracy), 0);
+
+            // Multiply by rotation from inaccuracy to set new rotation value
+            newFireDirection = accuracyFireDelta * newFireDirection;
+
+
             if (beam  == null)
             {
                 GameObject beamObject = Instantiate(beamPrefab);
@@ -55,11 +65,11 @@ public class WeaponAction_Raygun : WeaponAction
             }
                 
             beam.startPoint = firepoint.position;
-            beam.endPoint = firepoint.position + transform.forward * fireDistance;
+            beam.endPoint = firepoint.position + newFireDirection * fireDistance;
             
             
             // Cast the Ray and see if it hits something
-            if (Physics.Raycast(firepoint.position, firepoint.forward, out hit, fireDistance))
+            if (Physics.Raycast(firepoint.position, newFireDirection, out hit, fireDistance))
             {
                 // Try to get the health component of the target
                 Health otherHealth = hit.collider.gameObject.GetComponent<Health>();
@@ -68,6 +78,7 @@ public class WeaponAction_Raygun : WeaponAction
                 {
                     otherHealth.TakeDamage(weapon.damageDone);
                 }
+                
             }
             // Save the time of the latest shot
             lastShotTime = Time.time;

@@ -8,6 +8,8 @@ public class AIController : Controller
     [HideInInspector] public NavMeshAgent agent;
     public float stoppingDistance;
     public Transform targetTransform;
+    public float shootingDistance;
+    public float shootingAngle;
     private Vector3 desiredVelocity = Vector3.zero;
 
     // Start is called before the first frame update
@@ -17,10 +19,25 @@ public class AIController : Controller
     }
     protected override void Update()
     {
+
+        if (agent != null && GameManager.instance.isPaused)
+        {
+            Debug.Log("Game Paused");
+            agent.enabled = false;
+        }
+        else
+            agent.enabled = true;
+
+        // Check if there is a target
+        if (!HasTarget())
+        {
+            TargetPlayer();
+        }
+
         base.Update();
     }
 
-    protected override void PossessPawn(Pawn pawnToPossess)
+    public override void PossessPawn(Pawn pawnToPossess)
     {
         // Call the parent function
         base.PossessPawn(pawnToPossess);
@@ -48,7 +65,7 @@ public class AIController : Controller
         agent.updateRotation = false;
     }
 
-    protected override void UnpossessPawn()
+    public override void UnpossessPawn()
     {
         // Remove the nav mesh agent
         Destroy(agent);
@@ -65,7 +82,7 @@ public class AIController : Controller
         {
             return;
         }
-
+        
         // Set NavMesh to seek target
         agent.SetDestination(targetTransform.position);
 
@@ -77,5 +94,45 @@ public class AIController : Controller
 
         // Look towards the player
         pawn.RotateToLookAt(targetTransform.position);
+
+        // See if agent is enabled before trying to shoot
+        if (!agent.enabled)
+        {
+            return;
+        }
+
+        // AI Shooting
+        // If AI is close enough
+        if (Vector3.Distance(targetTransform.position, pawn.transform.position) <= shootingDistance)
+        {
+            // And if facing the right direction
+            Vector3 vectorToTarget = targetTransform.position - pawn.transform.position;
+            if (Vector3.Angle(pawn.transform.forward, vectorToTarget) <= shootingAngle)
+            {
+                // They should fire
+                pawn.weapon.OnPrimaryAttackBegin.Invoke();
+            }
+        }
+        else
+        {
+            // Release tirgger - stop shooting
+            pawn.weapon.OnPrimaryAttackEnd.Invoke();
+        }
+    }
+
+    // Check if AI has a target
+    private bool HasTarget()
+    {
+        return targetTransform != null;
+    }
+
+    // Target the player
+    private void TargetPlayer()
+    {
+        Controller playerCon = FindObjectOfType<PlayerController>();
+        if (playerCon != null && playerCon.pawn != null)
+        {
+            targetTransform = playerCon.pawn.transform;
+        }
     }
 }

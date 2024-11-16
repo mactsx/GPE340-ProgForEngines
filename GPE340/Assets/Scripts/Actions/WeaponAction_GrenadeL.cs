@@ -34,12 +34,9 @@ public class WeaponAction_GrenadeL : WeaponAction
         // See if the fire rate allows for another shot
         if (Time.time >= lastShotTime + secondsPerShot)
         {
-            // Create a new grenade
-            if (grenade == null)
-            {
-                GameObject grenadeObject = Instantiate(grenadePrefab, firepoint.position, firepoint.rotation);
-                grenade = grenadeObject.GetComponent<Grenade>();
-            }
+            GameObject grenadeObject = Instantiate(grenadePrefab, firepoint.position, firepoint.rotation);
+            grenadeObject.transform.Rotate(0, weapon.GetAccuracyRotationDegrees(), 0);    
+            
      
             // Save the time of the latest shot
             lastShotTime = Time.time;
