@@ -64,6 +64,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
+      propertyPath: weaponSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 48394c719d3930e42aedfb60a45dfebe, type: 3}
+    - target: {fileID: 7999220775317276775, guid: 11753b11d11fead4faf41cf29f258477, type: 3}
       propertyPath: maxAccuracyOffset
       value: 1
       objectReference: {fileID: 0}

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPawnPrefab;
     public GameObject EnemyPawnPrefab;
     public GameObject cameraPrefab;
+    public GameObject EnemyUIPrefab;
 
     [Header("Other")]
     public static GameManager instance;
@@ -52,7 +54,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Check to pause game
+        // Check if in the gameplay scene
+        if (SceneManager.GetActiveScene().name == "SampleScene")
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Pause();
+            }
+        }
     }
 
     // Find main camera in scene
@@ -149,6 +159,18 @@ public class GameManager : MonoBehaviour
         {
             AIHealth.OnDie.AddListener(OnEnemyDeath);
             Debug.Log("Added event");
+
+            Vector3 offset = -AICon.pawn.transform.forward * 1.3f;
+
+            // Spawn a UI and attach it to the enemy
+            GameObject newEnemyUI = Instantiate(EnemyUIPrefab, AICon.pawn.transform.position + offset, Quaternion.identity, AICon.pawn.transform) as GameObject;
+            // Connect the enemy health and set the player camera
+            UIEnemyHealth newEnemyUIComp = newEnemyUI.GetComponent<UIEnemyHealth>();
+            if (newEnemyUIComp != null)
+            {
+                newEnemyUIComp.enemyHealth = AIHealth;
+                newEnemyUIComp.playerCamera = mainCamera;
+            }
         }
     }
 
@@ -183,12 +205,12 @@ public class GameManager : MonoBehaviour
 
     public void WhenGameOver()
     {
-        Debug.Log("GAME OVER!");
+        SceneManager.LoadScene("Game Over Menu");
     }
 
     public void WhenWin()
     {
-        Debug.Log("*********** All Enemies Killed - VICTORY ***********");
+        SceneManager.LoadScene("Win Menu");
     }
 
     // For adding respawn button later - do not assign anywhere
@@ -196,7 +218,7 @@ public class GameManager : MonoBehaviour
     {
 
         // Check if there are enough lives
-        if (player.lives > 0)
+        if (player.lives > 1)
         {
             // destroy current pawn
             Destroy(player.pawn.gameObject);
@@ -251,11 +273,18 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
+        // Load the pause screen
+        SceneManager.LoadScene("Pause Menu", LoadSceneMode.Additive);
+
         isPaused = true;
+
         Time.timeScale = 0f;
     }
     public void Unpause()
     {
+        // Unload the pause screen
+        SceneManager.UnloadSceneAsync("Pause Menu");
+
         isPaused = false;
         Time.timeScale = 1f;
     }

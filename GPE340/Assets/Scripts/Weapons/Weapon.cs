@@ -8,6 +8,8 @@ public class Weapon : MonoBehaviour
     [HideInInspector]
     public Pawn owner;
 
+    public Sprite weaponSprite;
+
     [Header("Events")]
     public UnityEvent OnPrimaryAttackBegin;
     public UnityEvent OnPrimaryAttackEnd;

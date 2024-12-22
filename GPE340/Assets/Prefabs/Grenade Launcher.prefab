@@ -374,6 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30b7ac2b06986d4e9d029c56f47afa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  weaponSprite: {fileID: 21300000, guid: b36a8c63ff0556e4d951a9031447196b, type: 3}
   OnPrimaryAttackBegin:
     m_PersistentCalls:
       m_Calls:
